@@ -224,11 +224,37 @@
             border-color: rgba(255, 255, 255, 0.08);
         }
 
+        .bar-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-expand {
+            background: rgba(255, 255, 255, 0.07);
+            color: #fff;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 8px;
+            padding: 4px 10px;
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+
+        .btn-expand:hover {
+            background: var(--accent-color);
+            border-color: transparent;
+            box-shadow: 0 0 8px var(--accent-glow);
+        }
+
         .bar-info {
             display: flex;
             justify-content: space-between;
             align-items: center;
             font-size: 0.95rem;
+            flex-grow: 1;
+            margin-right: 12px;
         }
 
         .bar-name {
@@ -367,8 +393,8 @@
             </div>
             
             <div class="input-group">
-                <label for="reasonInput">¿Por qué te cae mal? (Opcional):</label>
-                <textarea id="reasonInput" placeholder="Escribe tus motivos aquí... (Si no pones nada aparecerá 'Prefiero no decirlo')" maxlength="150"></textarea>
+                <label for="reasonInput">¿Por qué te cae mal? (Obligatorio):</label>
+                <textarea id="reasonInput" placeholder="Escribe tus motivos aquí... (Campo obligatorio)" maxlength="150"></textarea>
             </div>
 
             <label class="incognito-group">
@@ -551,22 +577,11 @@
                 const barRow = document.createElement('div');
                 barRow.className = `bar-row ${index < 3 ? 'top-' + index : ''}`;
                 
-                // Evento click unificado: rellena el formulario si está disponible, y además despliega el historial
+                // Al hacer clic en la fila completa se selecciona automáticamente a la persona sin abrir los detalles
                 barRow.onclick = (e) => {
-                    // Si no ha completado los 5 votos, autocompleta el nombre y enfoca el motivo
                     if(!hasVoted && currentSessionName) {
                         nameInput.value = item.name;
                         reasonInput.focus();
-                    }
-
-                    // Lógica para colapsar / expandir el panel de detalles de quién votó por esta persona
-                    const targetDetailsList = barRow.querySelector('.voters-details-list');
-                    if(targetDetailsList) {
-                        if(targetDetailsList.style.display === 'flex') {
-                            targetDetailsList.style.display = 'none';
-                        } else {
-                            targetDetailsList.style.display = 'flex';
-                        }
                     }
                 };
 
@@ -587,9 +602,12 @@
                 }
 
                 barRow.innerHTML = `
-                    <div class="bar-info">
-                        <span class="bar-name">${medalHtml}${item.name}</span>
-                        <span class="bar-votes">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%)</span>
+                    <div class="bar-header">
+                        <div class="bar-info">
+                            <span class="bar-name">${medalHtml}${item.name}</span>
+                            <span class="bar-votes">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%)</span>
+                        </div>
+                        <button class="btn-expand">Ver</button>
                     </div>
                     <div class="bar-track">
                         <div class="bar-fill" style="width: ${percentage}%"></div>
@@ -599,6 +617,23 @@
                         ${individualDetailsHtml}
                     </div>
                 `;
+
+                // Botón dedicado y aislado en la esquina para expandir o esconder los detalles
+                const expandBtn = barRow.querySelector('.btn-expand');
+                expandBtn.onclick = (e) => {
+                    e.stopPropagation(); // Evita que se rellene el formulario de votación
+                    const targetDetailsList = barRow.querySelector('.voters-details-list');
+                    if(targetDetailsList) {
+                        if(targetDetailsList.style.display === 'flex') {
+                            targetDetailsList.style.display = 'none';
+                            expandBtn.innerText = "Ver";
+                        } else {
+                            targetDetailsList.style.display = 'flex';
+                            expandBtn.innerText = "Ocultar";
+                        }
+                    }
+                };
+
                 resultsContainer.appendChild(barRow);
             });
         });
@@ -619,8 +654,10 @@
                 return;
             }
 
+            // OBLIGATORIEDAD DEL MOTIVO: Si el campo está vacío, detenemos la operación de inmediato
             if (!rawReason) {
-                rawReason = "Prefiero no decirlo";
+                alert("Por favor, ingresa el motivo de tu voto. Es totalmente obligatorio decir por qué te cae mal.");
+                return;
             }
 
             const sanitizedName = rawName.replace(/[\.#\$\[\]]/g, "").trim();
