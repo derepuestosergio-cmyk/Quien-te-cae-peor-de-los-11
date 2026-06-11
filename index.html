@@ -35,351 +35,6 @@
             overflow-x: hidden;
         }
 
-        /* Pantalla de ingreso de nombre */
-        #nameEntryScreen {
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.85);
-            backdrop-filter: blur(10px);
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            z-index: 9999;
-        }
-
-        .name-entry-box {
-            background: #15102a;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px;
-            padding: 40px 36px;
-            width: 100%;
-            max-width: 420px;
-            text-align: center;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-            animation: fadeIn 0.5s ease;
-        }
-
-        .name-entry-box h2 {
-            font-size: 1.4rem;
-            font-weight: 800;
-            margin-bottom: 8px;
-            background: linear-gradient(90deg, #ff4757, #ff6b81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .name-entry-box p {
-            color: var(--text-muted);
-            font-size: 0.88rem;
-            margin-bottom: 24px;
-        }
-
-        .name-entry-box input {
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.12);
-            padding: 14px 18px;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 1rem;
-            outline: none;
-            width: 100%;
-            margin-bottom: 16px;
-            transition: all 0.3s ease;
-        }
-
-        .name-entry-box input:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .name-entry-box button {
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 14px;
-            border-radius: 12px;
-            font-size: 1rem;
-            font-weight: 700;
-            cursor: pointer;
-            width: 100%;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-        .name-entry-box button:hover {
-            background: #ff6b81;
-            transform: translateY(-2px);
-        }
-
-        /* Modal de Votación */
-        #voteModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 8888;
-        }
-
-        #voteModal.active {
-            display: flex;
-        }
-
-        .vote-modal-box {
-            background: #15102a;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px;
-            padding: 36px 32px;
-            width: 100%;
-            max-width: 420px;
-            animation: fadeIn 0.4s ease;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
-        .vote-modal-box h3 {
-            font-size: 1.2rem;
-            font-weight: 800;
-            margin-bottom: 6px;
-            background: linear-gradient(90deg, #ff4757, #ff6b81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .vote-modal-box .modal-subtitle {
-            color: var(--text-muted);
-            font-size: 0.85rem;
-            margin-bottom: 20px;
-        }
-
-        .vote-modal-box .modal-target {
-            font-size: 1rem;
-            font-weight: 700;
-            color: #fff;
-            background: rgba(255,71,87,0.12);
-            border: 1px solid rgba(255,71,87,0.3);
-            border-radius: 10px;
-            padding: 10px 16px;
-            margin-bottom: 18px;
-            text-align: center;
-        }
-
-        .vote-modal-box textarea {
-            background: rgba(255,255,255,0.05);
-            border: 1px solid rgba(255,255,255,0.1);
-            padding: 12px 16px;
-            border-radius: 12px;
-            color: #fff;
-            font-size: 0.9rem;
-            outline: none;
-            width: 100%;
-            resize: none;
-            height: 90px;
-            transition: all 0.3s ease;
-            font-family: 'Poppins', sans-serif;
-            margin-bottom: 14px;
-        }
-
-        .vote-modal-box textarea:focus {
-            border-color: var(--accent-color);
-            box-shadow: 0 0 10px var(--accent-glow);
-        }
-
-        .vote-modal-box textarea::placeholder {
-            color: rgba(255,255,255,0.25);
-        }
-
-        .incognito-toggle {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            margin-bottom: 18px;
-            cursor: pointer;
-            user-select: none;
-        }
-
-        .incognito-toggle input[type="checkbox"] {
-            display: none;
-        }
-
-        .incognito-toggle .toggle-track {
-            width: 42px;
-            height: 22px;
-            background: rgba(255,255,255,0.1);
-            border-radius: 11px;
-            position: relative;
-            transition: background 0.3s;
-            flex-shrink: 0;
-            border: 1px solid rgba(255,255,255,0.15);
-        }
-
-        .incognito-toggle input:checked + .toggle-track {
-            background: #ff4757;
-        }
-
-        .incognito-toggle .toggle-track::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: #fff;
-            border-radius: 50%;
-            top: 2px;
-            left: 2px;
-            transition: left 0.3s;
-        }
-
-        .incognito-toggle input:checked + .toggle-track::after {
-            left: 22px;
-        }
-
-        .incognito-toggle span {
-            font-size: 0.85rem;
-            color: var(--text-muted);
-        }
-
-        .modal-buttons {
-            display: flex;
-            gap: 10px;
-        }
-
-        .btn-cancel-modal {
-            flex: 1;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-muted);
-            padding: 13px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-cancel-modal:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-        }
-
-        .btn-confirm-vote {
-            flex: 2;
-            background: var(--accent-color);
-            color: white;
-            border: none;
-            padding: 13px;
-            border-radius: 12px;
-            font-size: 0.95rem;
-            font-weight: 700;
-            cursor: pointer;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px var(--accent-glow);
-        }
-
-        .btn-confirm-vote:hover {
-            background: #ff6b81;
-            transform: translateY(-2px);
-        }
-
-        .btn-confirm-vote:disabled {
-            background: #555;
-            box-shadow: none;
-            cursor: not-allowed;
-            transform: none;
-        }
-
-        /* Modal de detalles de votos */
-        #detailModal {
-            display: none;
-            position: fixed;
-            inset: 0;
-            background: rgba(0,0,0,0.75);
-            backdrop-filter: blur(8px);
-            justify-content: center;
-            align-items: center;
-            z-index: 8888;
-        }
-
-        #detailModal.active {
-            display: flex;
-        }
-
-        .detail-modal-box {
-            background: #15102a;
-            border: 1px solid rgba(255,255,255,0.12);
-            border-radius: 20px;
-            padding: 32px 28px;
-            width: 100%;
-            max-width: 440px;
-            max-height: 80vh;
-            overflow-y: auto;
-            animation: fadeIn 0.4s ease;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
-        }
-
-        .detail-modal-box h3 {
-            font-size: 1.15rem;
-            font-weight: 800;
-            margin-bottom: 16px;
-            background: linear-gradient(90deg, #ff4757, #ff6b81);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .detail-voter-item {
-            background: rgba(255,255,255,0.03);
-            border: 1px solid rgba(255,255,255,0.07);
-            border-radius: 12px;
-            padding: 12px 16px;
-            margin-bottom: 10px;
-        }
-
-        .detail-voter-name {
-            font-weight: 700;
-            font-size: 0.95rem;
-            color: #fff;
-            display: flex;
-            align-items: center;
-            gap: 6px;
-            margin-bottom: 4px;
-        }
-
-        .detail-voter-reason {
-            font-size: 0.82rem;
-            color: var(--text-muted);
-            font-style: italic;
-        }
-
-        .detail-no-voters {
-            text-align: center;
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            padding: 20px 0;
-        }
-
-        .btn-close-detail {
-            margin-top: 18px;
-            width: 100%;
-            background: rgba(255,255,255,0.06);
-            border: 1px solid rgba(255,255,255,0.1);
-            color: var(--text-muted);
-            padding: 12px;
-            border-radius: 12px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: all 0.2s;
-        }
-
-        .btn-close-detail:hover {
-            background: rgba(255,255,255,0.1);
-            color: #fff;
-        }
-
         /* Contenedor Principal con animación de entrada */
         .container {
             background: var(--panel-bg);
@@ -406,6 +61,16 @@
             -webkit-text-fill-color: transparent;
         }
 
+        /* Sección de Identificación Inicial */
+        .user-auth-section {
+            margin-bottom: 35px;
+            background: rgba(255, 255, 255, 0.02);
+            padding: 20px;
+            border-radius: 16px;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            animation: slideDown 0.5s ease;
+        }
+
         /* Sección de Votación */
         .vote-section {
             display: none; /* Se muestra por JS si es nuevo */
@@ -430,7 +95,7 @@
             font-weight: 600;
         }
 
-        input[type="text"] {
+        input[type="text"], textarea {
             background: rgba(255, 255, 255, 0.05);
             border: 1px solid var(--panel-border);
             padding: 14px 20px;
@@ -441,9 +106,42 @@
             transition: all 0.3s ease;
         }
 
-        input[type="text"]:focus {
+        textarea {
+            resize: none;
+            height: 90px;
+            font-size: 0.95rem;
+        }
+
+        input[type="text"]:focus, textarea:focus {
             border-color: var(--accent-color);
             box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        /* Opción Modo Incógnito */
+        .incognito-group {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 20px;
+            cursor: pointer;
+            user-select: none;
+            background: rgba(0, 0, 0, 0.2);
+            padding: 12px;
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.02);
+        }
+
+        .incognito-group input[type="checkbox"] {
+            width: 18px;
+            height: 18px;
+            cursor: pointer;
+            accent-color: var(--accent-color);
+        }
+
+        .incognito-group span {
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #eee;
         }
 
         .btn-vote {
@@ -554,12 +252,6 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 2px 10px;
             border-radius: 20px;
-            cursor: pointer;
-        }
-
-        .bar-votes:hover {
-            background: rgba(255, 71, 87, 0.15);
-            color: #ff6b81;
         }
 
         .bar-track {
@@ -579,6 +271,44 @@
             transition: width 0.8s cubic-bezier(0.1, 1, 0.1, 1);
         }
 
+        /* Desglose de votantes públicos */
+        .voters-details-list {
+            display: none;
+            margin-top: 10px;
+            padding: 12px;
+            background: rgba(0, 0, 0, 0.25);
+            border-radius: 12px;
+            border: 1px solid rgba(255, 255, 255, 0.05);
+            flex-direction: column;
+            gap: 8px;
+            animation: fadeIn 0.4s ease-out;
+        }
+
+        .voter-detail-item {
+            font-size: 0.85rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.03);
+            padding-bottom: 6px;
+        }
+
+        .voter-detail-item:last-child {
+            border-bottom: none;
+            padding-bottom: 0;
+        }
+
+        .voter-detail-name {
+            font-weight: 600;
+            color: #ff6b81;
+        }
+
+        .voter-detail-reason {
+            color: #d1d1d1;
+            font-style: italic;
+            display: block;
+            margin-top: 2px;
+            padding-left: 5px;
+            border-left: 2px solid rgba(255, 255, 255, 0.1);
+        }
+
         /* Colores especiales de barra para el podio */
         .top-0 .bar-fill {
             background: linear-gradient(90deg, #ffd700, #ffa502); /* Oro */
@@ -594,27 +324,6 @@
             text-align: center;
             color: var(--text-muted);
             font-size: 0.9rem;
-        }
-
-        /* Hint de "ver quién votó" */
-        .voters-hint {
-            font-size: 0.75rem;
-            color: rgba(255,71,87,0.6);
-            text-align: right;
-            margin-top: 2px;
-        }
-
-        /* Scrollbar del modal de detalles */
-        .detail-modal-box::-webkit-scrollbar {
-            width: 6px;
-        }
-        .detail-modal-box::-webkit-scrollbar-track {
-            background: rgba(255,255,255,0.03);
-            border-radius: 3px;
-        }
-        .detail-modal-box::-webkit-scrollbar-thumb {
-            background: rgba(255,71,87,0.4);
-            border-radius: 3px;
         }
 
         /* Animaciones */
@@ -636,46 +345,16 @@
 </head>
 <body>
 
-    <!-- Pantalla de ingreso de nombre -->
-    <div id="nameEntryScreen">
-        <div class="name-entry-box">
-            <h2>👤 ¿Cómo te llamas?</h2>
-            <p>Tu nombre aparecerá cuando otros vean quién votó por quién.</p>
-            <input type="text" id="userNameInput" placeholder="Tu nombre..." maxlength="25" autocomplete="off">
-            <button id="enterAppBtn">ENTRAR</button>
-        </div>
-    </div>
-
-    <!-- Modal de Votación -->
-    <div id="voteModal">
-        <div class="vote-modal-box">
-            <h3>🗳️ Votar</h3>
-            <p class="modal-subtitle">Vas a votar por:</p>
-            <div class="modal-target" id="modalTargetName">—</div>
-            <textarea id="modalReason" placeholder="¿Por qué te cae mal? (opcional)"></textarea>
-            <label class="incognito-toggle">
-                <input type="checkbox" id="incognitoCheck">
-                <span class="toggle-track"></span>
-                <span>🕵️ Modo incógnito (tu nombre aparecerá como "Anónimo")</span>
-            </label>
-            <div class="modal-buttons">
-                <button class="btn-cancel-modal" id="cancelVoteBtn">Cancelar</button>
-                <button class="btn-confirm-vote" id="confirmVoteBtn">VOTAR</button>
-            </div>
-        </div>
-    </div>
-
-    <!-- Modal de detalles de votos -->
-    <div id="detailModal">
-        <div class="detail-modal-box">
-            <h3 id="detailModalTitle">Votos para —</h3>
-            <div id="detailModalContent"></div>
-            <button class="btn-close-detail" id="closeDetailBtn">Cerrar</button>
-        </div>
-    </div>
-
     <div class="container">
         <h1>¿Quién te cae peor de los 11?</h1>
+
+        <div id="authSection" class="user-auth-section">
+            <div class="input-group">
+                <label for="usernameInput">Ingresa tu nombre antes de ver o votar:</label>
+                <input type="text" id="usernameInput" placeholder="Tu nombre o apodo..." maxlength="25">
+            </div>
+            <button id="authBtn" class="btn-vote">INGRESAR</button>
+        </div>
 
         <div id="alreadyVotedMsg" class="already-voted-msg">
             🔒 Tu voto ha sido registrado. Solo se permite un voto por IP.
@@ -683,9 +362,20 @@
 
         <div id="voteSection" class="vote-section">
             <div class="input-group">
-                <label for="nameInput">Escribe un nombre o selecciona uno de la lista:</label>
+                <label id="voteInstructionsLabel" for="nameInput">Escribe un nombre o selecciona uno de la lista:</label>
                 <input type="text" id="nameInput" placeholder="Ej. Juan, Pedro..." maxlength="30">
             </div>
+            
+            <div class="input-group">
+                <label for="reasonInput">¿Por qué te cae mal? (Opcional):</label>
+                <textarea id="reasonInput" placeholder="Escribe tus motivos aquí... (Si no pones nada aparecerá 'Prefiero no decirlo')" maxlength="150"></textarea>
+            </div>
+
+            <label class="incognito-group">
+                <input type="checkbox" id="incognitoCheck">
+                <span>Modo incógnito (Ocultar mi nombre de la lista pública)</span>
+            </label>
+
             <button id="voteBtn" class="btn-vote">VOTAR</button>
         </div>
 
@@ -698,7 +388,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, get, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         // Configuración de tu base de datos
         const firebaseConfig = {
@@ -716,126 +406,117 @@
         const app = initializeApp(firebaseConfig);
         const db = getDatabase(app);
 
-        // Nodos Directos
+        // Nodos Directos Estructurados
         const votesRef = ref(db, 'Votos');
-        // Nodo nuevo para detalles de votos (quién votó por quién, razón, incógnito)
-        const voteDetailsRef = ref(db, 'VoteDetails');
+        const detailsRef = ref(db, 'Detalles_Votos');
 
         // Elementos del DOM
+        const authSection = document.getElementById('authSection');
+        const usernameInput = document.getElementById('usernameInput');
+        const authBtn = document.getElementById('authBtn');
         const voteSection = document.getElementById('voteSection');
         const alreadyVotedMsg = document.getElementById('alreadyVotedMsg');
         const nameInput = document.getElementById('nameInput');
+        const reasonInput = document.getElementById('reasonInput');
+        const incognitoCheck = document.getElementById('incognitoCheck');
         const voteBtn = document.getElementById('voteBtn');
         const resultsContainer = document.getElementById('resultsContainer');
         const loadingStr = document.getElementById('loading');
-
-        // Elementos de pantalla de nombre
-        const nameEntryScreen = document.getElementById('nameEntryScreen');
-        const userNameInput = document.getElementById('userNameInput');
-        const enterAppBtn = document.getElementById('enterAppBtn');
-
-        // Elementos del modal de votación
-        const voteModal = document.getElementById('voteModal');
-        const modalTargetName = document.getElementById('modalTargetName');
-        const modalReason = document.getElementById('modalReason');
-        const incognitoCheck = document.getElementById('incognitoCheck');
-        const cancelVoteBtn = document.getElementById('cancelVoteBtn');
-        const confirmVoteBtn = document.getElementById('confirmVoteBtn');
-
-        // Elementos del modal de detalles
-        const detailModal = document.getElementById('detailModal');
-        const detailModalTitle = document.getElementById('detailModalTitle');
-        const detailModalContent = document.getElementById('detailModalContent');
-        const closeDetailBtn = document.getElementById('closeDetailBtn');
+        const voteInstructionsLabel = document.getElementById('voteInstructionsLabel');
 
         let userIpSanitized = "";
         let hasVoted = false;
         let globalVotesData = {};
-        let globalVoteDetails = {};
-        let currentVoteTarget = "";
-        let currentUserName = "";
+        let globalDetailsData = {};
+        let currentSessionName = "";
+        
+        // Estructura para almacenar los nombres por los que este usuario ya votó
+        let personasVotadasPorUsuario = [];
 
-        // ── Pantalla de ingreso de nombre ──────────────────────────────────
-        function initNameEntry() {
-            const savedName = localStorage.getItem('user_display_name');
-            if (savedName && savedName.trim().length > 0) {
-                currentUserName = savedName.trim();
-                nameEntryScreen.style.display = 'none';
-                checkUserStatus();
-            } else {
-                nameEntryScreen.style.display = 'flex';
-            }
+        // Almacenamiento local del nombre para evitar pedirlo en refrescos del mismo dispositivo
+        if (localStorage.getItem('saved_username')) {
+            currentSessionName = localStorage.getItem('saved_username');
+            authSection.style.display = 'none';
+        } else {
+            voteSection.style.display = 'none';
         }
 
-        enterAppBtn.addEventListener('click', () => {
-            const inputVal = userNameInput.value.trim();
-            if (!inputVal || inputVal.length < 1) {
-                userNameInput.style.borderColor = '#ff4757';
-                userNameInput.placeholder = "Por favor escribe tu nombre...";
+        // Evento de ingreso de usuario inicial
+        authBtn.addEventListener('click', () => {
+            const enteredName = usernameInput.value.trim();
+            if (!enteredName) {
+                alert("Por favor introduce un nombre válido para continuar.");
                 return;
             }
-            currentUserName = inputVal;
-            localStorage.setItem('user_display_name', currentUserName);
-            nameEntryScreen.style.display = 'none';
+            currentSessionName = enteredName;
+            localStorage.setItem('saved_username', enteredName);
+            authSection.style.display = 'none';
             checkUserStatus();
         });
 
-        userNameInput.addEventListener('keydown', (e) => {
-            if (e.key === 'Enter') enterAppBtn.click();
-        });
-
-        // ── Escuchar detalles de votos en tiempo real ──────────────────────
-        onValue(voteDetailsRef, (snapshot) => {
-            if (snapshot.exists()) {
-                globalVoteDetails = snapshot.val();
-            } else {
-                globalVoteDetails = {};
-            }
-        });
-
-        // ── Validar la IP única del votante — solo Firebase, sin localStorage ──
+        // 1. Validar la IP única del votante y verificar cuántos votos lleva hechos
         async function checkUserStatus() {
+            if (!currentSessionName) return;
             try {
                 const response = await fetch('https://api.ipify.org?format=json');
                 const data = await response.json();
                 userIpSanitized = data.ip.replace(/\./g, '_');
 
-                const ipSnapshot = await get(ref(db, `Ips_Votadas/${userIpSanitized}`));
+                // Consultar en Firebase cuántos votos ya registró esta IP
+                const userVotesSnapshot = await get(ref(db, `Historial_Votantes_IP/${userIpSanitized}`));
+                
+                personasVotadasPorUsuario = [];
+                if (userVotesSnapshot.exists()) {
+                    personasVotadasPorUsuario = Object.keys(userVotesSnapshot.val());
+                }
 
-                if (ipSnapshot.exists()) {
+                // Si ya completó sus 5 votos permitidos, cerramos el formulario
+                if (personasVotadasPorUsuario.length >= 5) {
                     hasVoted = true;
+                    alreadyVotedMsg.innerText = "🔒 Ya has alcanzado el límite máximo de 5 votos permitidos por persona.";
                     alreadyVotedMsg.style.display = 'block';
                     voteSection.style.display = 'none';
                 } else {
                     hasVoted = false;
+                    alreadyVotedMsg.style.display = 'none';
                     voteSection.style.display = 'block';
+                    actualizarContadorLabel();
                 }
             } catch (error) {
                 console.error("Error al validar la IP:", error);
-                // Si hay error de red no bloqueamos al usuario, Firebase rechazará duplicados igual
-                hasVoted = false;
-                voteSection.style.display = 'block';
+                // Respaldo por si falla la API externa
+                if(localStorage.getItem('voted_local_count')) {
+                    const localCount = parseInt(localStorage.getItem('voted_local_count'), 10) || 0;
+                    if (localCount >= 5) {
+                        hasVoted = true;
+                        alreadyVotedMsg.innerText = "🔒 Ya has alcanzado el límite máximo de 5 votos permitidos.";
+                        alreadyVotedMsg.style.display = 'block';
+                        voteSection.style.display = 'none';
+                    } else {
+                        voteSection.style.display = 'block';
+                    }
+                } else {
+                    voteSection.style.display = 'block';
+                }
             }
         }
 
-        // ── Abrir modal de votación ────────────────────────────────────────
-        function openVoteModal(targetName) {
-            if (hasVoted) return;
-            currentVoteTarget = targetName;
-            modalTargetName.textContent = targetName;
-            modalReason.value = "";
-            incognitoCheck.checked = false;
-            confirmVoteBtn.disabled = false;
-            confirmVoteBtn.innerText = "VOTAR";
-            voteModal.classList.add('active');
+        // Helper para refrescar las instrucciones en pantalla
+        function actualizarContadorLabel() {
+            const restantes = 5 - personasVotadasPorUsuario.length;
+            voteInstructionsLabel.innerText = `Escribe un nombre o selecciona uno de la lista (Te quedan ${restantes} votos disponibles):`;
         }
 
-        cancelVoteBtn.addEventListener('click', () => {
-            voteModal.classList.remove('active');
-            currentVoteTarget = "";
+        // Cargar los motivos y personas que votaron en tiempo real desde un nodo secundario
+        onValue(detailsRef, (snapshot) => {
+            if (snapshot.exists()) {
+                globalDetailsData = snapshot.val();
+            } else {
+                globalDetailsData = {};
+            }
         });
 
-        // ── Escuchar cambios de Firebase y renderizar con Medallas ─────────
+        // 2. Escuchar cambios de Firebase y renderizar con Medallas y Desglose Abierto
         onValue(votesRef, (snapshot) => {
             loadingStr.style.display = 'none';
             resultsContainer.innerHTML = "";
@@ -868,163 +549,78 @@
                 else if (index === 2) medalHtml = '<span class="medal">🥉</span> ';
 
                 const barRow = document.createElement('div');
-                // Agrega clases especiales top-0, top-1, top-2 para cambiar color de barra
                 barRow.className = `bar-row ${index < 3 ? 'top-' + index : ''}`;
-
-                // Al hacer clic en la fila: si no votó → abrir modal de votación
-                // Si ya votó → abrir modal de detalles
+                
+                // Evento click unificado: rellena el formulario si está disponible, y además despliega el historial
                 barRow.onclick = (e) => {
-                    // Si el click viene del badge de votos, lo manejamos por separado
-                    if (e.target.classList.contains('bar-votes')) return;
-                    if (!hasVoted) {
+                    // Si no ha completado los 5 votos, autocompleta el nombre y enfoca el motivo
+                    if(!hasVoted && currentSessionName) {
                         nameInput.value = item.name;
-                        openVoteModal(item.name);
-                    } else {
-                        openDetailModal(item.name);
+                        reasonInput.focus();
+                    }
+
+                    // Lógica para colapsar / expandir el panel de detalles de quién votó por esta persona
+                    const targetDetailsList = barRow.querySelector('.voters-details-list');
+                    if(targetDetailsList) {
+                        if(targetDetailsList.style.display === 'flex') {
+                            targetDetailsList.style.display = 'none';
+                        } else {
+                            targetDetailsList.style.display = 'flex';
+                        }
                     }
                 };
+
+                // Construcción de la lista de detalles internos vinculados a este usuario
+                let individualDetailsHtml = "";
+                if (globalDetailsData[item.name]) {
+                    Object.keys(globalDetailsData[item.name]).forEach(voterKey => {
+                        const objectDetail = globalDetailsData[item.name][voterKey];
+                        individualDetailsHtml += `
+                            <div class="voter-detail-item">
+                                <span class="voter-detail-name">👤 ${objectDetail.votoIncognito ? 'Incógnito' : objectDetail.votante}:</span>
+                                <span class="voter-detail-reason">"${objectDetail.motivo}"</span>
+                            </div>
+                        `;
+                    });
+                } else {
+                    individualDetailsHtml = `<div class="voter-detail-item" style="color:var(--text-muted);">No hay motivos públicos registrados.</div>`;
+                }
 
                 barRow.innerHTML = `
                     <div class="bar-info">
                         <span class="bar-name">${medalHtml}${item.name}</span>
-                        <span class="bar-votes" title="Ver quién votó">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%) 👁</span>
+                        <span class="bar-votes">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%)</span>
                     </div>
                     <div class="bar-track">
                         <div class="bar-fill" style="width: ${percentage}%"></div>
                     </div>
-                    <div class="voters-hint">Toca los votos para ver quién votó</div>
+                    <div class="voters-details-list">
+                        <div style="font-size:0.8rem; font-weight:800; color:var(--text-muted); margin-bottom:4px; text-transform:uppercase;">Historial de votos y motivos:</div>
+                        ${individualDetailsHtml}
+                    </div>
                 `;
-
-                // El badge de votos abre siempre el modal de detalles
-                const voteBadge = barRow.querySelector('.bar-votes');
-                voteBadge.addEventListener('click', (e) => {
-                    e.stopPropagation();
-                    openDetailModal(item.name);
-                });
-
                 resultsContainer.appendChild(barRow);
             });
         });
 
-        // ── Modal de detalles: quién votó por quién ───────────────────────
-        function openDetailModal(targetName) {
-            detailModalTitle.textContent = `Votos para ${targetName}`;
-            detailModalContent.innerHTML = "";
-
-            // Buscar en VoteDetails todos los registros que tengan voted = targetName
-            const allDetails = globalVoteDetails;
-            const votersForTarget = [];
-
-            Object.keys(allDetails).forEach(key => {
-                const entry = allDetails[key];
-                if (entry.voted === targetName) {
-                    votersForTarget.push(entry);
-                }
-            });
-
-            if (votersForTarget.length === 0) {
-                detailModalContent.innerHTML = `<div class="detail-no-voters">Nadie ha votado por ${targetName} aún.</div>`;
-            } else {
-                votersForTarget.forEach(entry => {
-                    const voterDisplayName = entry.incognito ? '🕵️ Anónimo' : `👤 ${entry.voterName}`;
-                    const reasonText = entry.reason && entry.reason.trim().length > 0
-                        ? entry.reason.trim()
-                        : 'Prefiero no decirlo.';
-
-                    const item = document.createElement('div');
-                    item.className = 'detail-voter-item';
-                    item.innerHTML = `
-                        <div class="detail-voter-name">${voterDisplayName}</div>
-                        <div class="detail-voter-reason">💬 "${reasonText}"</div>
-                    `;
-                    detailModalContent.appendChild(item);
-                });
-            }
-
-            detailModal.classList.add('active');
-        }
-
-        closeDetailBtn.addEventListener('click', () => {
-            detailModal.classList.remove('active');
-        });
-
-        detailModal.addEventListener('click', (e) => {
-            if (e.target === detailModal) detailModal.classList.remove('active');
-        });
-
-        // ── Confirmar voto desde el modal ─────────────────────────────────
-        confirmVoteBtn.addEventListener('click', async () => {
-            if (!currentVoteTarget || currentVoteTarget.trim().length === 0) {
-                alert("No hay un objetivo de voto seleccionado.");
-                return;
-            }
-
-            const sanitizedName = currentVoteTarget.replace(/[\.#\$\[\]]/g, "").trim();
-
-            if (sanitizedName.length === 0) {
-                alert("Nombre no válido.");
-                return;
-            }
-
-            const reason = modalReason.value.trim();
-            const isIncognito = incognitoCheck.checked;
-
-            confirmVoteBtn.disabled = true;
-            confirmVoteBtn.innerText = "PROCESANDO...";
-
-            try {
-                if (userIpSanitized) {
-                    const ipSnapshot = await get(ref(db, `Ips_Votadas/${userIpSanitized}`));
-                    if (ipSnapshot.exists()) {
-                        alert("Esta dirección IP ya registró un voto.");
-                        location.reload();
-                        return;
-                    }
-                }
-
-                const currentVotes = globalVotesData[sanitizedName] || 0;
-                const newVotesValue = currentVotes + 1;
-
-                // Guardado directo en /Votos/Nombre
-                await set(ref(db, `Votos/${sanitizedName}`), newVotesValue);
-
-                // Guardar detalle del voto en /VoteDetails
-                const detailEntry = {
-                    voterName: currentUserName,
-                    voted: sanitizedName,
-                    reason: reason.length > 0 ? reason : "",
-                    incognito: isIncognito,
-                    timestamp: Date.now()
-                };
-                await push(voteDetailsRef, detailEntry);
-
-                if (userIpSanitized) {
-                    await set(ref(db, `Ips_Votadas/${userIpSanitized}`), true);
-                }
-
-                hasVoted = true;
-
-                nameInput.value = "";
-                voteSection.style.display = 'none';
-                alreadyVotedMsg.style.display = 'block';
-                voteModal.classList.remove('active');
-                currentVoteTarget = "";
-
-            } catch (error) {
-                console.error("Error al votar: ", error);
-                alert("Inconveniente: " + error.message);
-                confirmVoteBtn.disabled = false;
-                confirmVoteBtn.innerText = "VOTAR";
-            }
-        });
-
-        // ── Procesar Envío del Voto desde el input manual ─────────────────
+        // 3. Procesar Envío del Voto con Motivos y Datos de Identificación Colectivos hasta un máximo de 5 personas
         voteBtn.addEventListener('click', async () => {
+            if (!currentSessionName) {
+                alert("Por favor, ingresa tu nombre arriba en el recuadro primero.");
+                return;
+            }
+
             const rawName = nameInput.value.trim();
+            let rawReason = reasonInput.value.trim();
+            const isIncognito = incognitoCheck.checked;
             
             if (!rawName) {
                 alert("Por favor, escribe o selecciona un nombre válido.");
                 return;
+            }
+
+            if (!rawReason) {
+                rawReason = "Prefiero no decirlo";
             }
 
             const sanitizedName = rawName.replace(/[\.#\$\[\]]/g, "").trim();
@@ -1034,11 +630,95 @@
                 return;
             }
 
-            // Abrir el modal de confirmación con razón e incógnito
-            openVoteModal(sanitizedName);
+            // REGLA DE NO REPETIR: Comprobamos si el usuario actual ya nominó a esta persona específica
+            if (personasVotadasPorUsuario.includes(sanitizedName)) {
+                alert(`Ya has votado por "${sanitizedName}". Debes elegir a 5 personas diferentes.`);
+                voteBtn.disabled = false;
+                voteBtn.innerText = "VOTAR";
+                return;
+            }
+
+            voteBtn.disabled = true;
+            voteBtn.innerText = "PROCESANDO...";
+
+            try {
+                // Validación estricta en tiempo real consultando de nuevo Firebase para evitar bypass concurrente
+                if (userIpSanitized) {
+                    const currentStatusSnapshot = await get(ref(db, `Historial_Votantes_IP/${userIpSanitized}`));
+                    let votosActualesServidor = [];
+                    if (currentStatusSnapshot.exists()) {
+                        votosActualesServidor = Object.keys(currentStatusSnapshot.val());
+                    }
+
+                    if (votosActualesServidor.includes(sanitizedName)) {
+                        alert("Ya registraste un voto para esta persona anteriormente.");
+                        voteBtn.disabled = false;
+                        voteBtn.innerText = "VOTAR";
+                        return;
+                    }
+
+                    if (votosActualesServidor.length >= 5) {
+                        alert("Has alcanzado el límite máximo de 5 personas diferentes.");
+                        location.reload();
+                        return;
+                    }
+                }
+
+                const currentVotes = globalVotesData[sanitizedName] || 0;
+                const newVotesValue = currentVotes + 1;
+
+                // 1. Guardado directo en el conteo numérico tradicional /Votos/Nombre
+                await set(ref(db, `Votos/${sanitizedName}`), newVotesValue);
+
+                // 2. Insertar historial estructurado con el nombre del votante, motivo y bandera de incógnito
+                const newVoterLogRef = ref(db, `Detalles_Votos/${sanitizedName}/${currentSessionName}_${Date.now()}`);
+                await set(newVoterLogRef, {
+                    votante: currentSessionName,
+                    motivo: rawReason,
+                    votoIncognito: isIncognito
+                });
+
+                // 3. Registrar el voto actual dentro del historial de esta IP para controlar el tope de 5 diferentes
+                if (userIpSanitized) {
+                    await set(ref(db, `Historial_Votantes_IP/${userIpSanitized}/${sanitizedName}`), true);
+                    // Dejar constancia general por IP para compatibilidad antigua si fuera requerido
+                    await set(ref(db, `Ips_Votadas/${userIpSanitized}`), true);
+                }
+
+                // Actualizar arreglos locales de seguimiento de votos
+                personasVotadasPorUsuario.push(sanitizedName);
+                localStorage.setItem('voted_local_count', personasVotadasPorUsuario.length.toString());
+
+                // Limpiar inputs de texto listos para el próximo voto si le quedan espacios
+                nameInput.value = "";
+                reasonInput.value = "";
+                incognitoCheck.checked = false;
+
+                // Si llegó al tope de 5, bloqueamos definitivamente la sección
+                if (personasVotadasPorUsuario.length >= 5) {
+                    hasVoted = true;
+                    voteSection.style.display = 'none';
+                    alreadyVotedMsg.innerText = "🔒 ¡Has completado tus 5 votos permitidos para personas diferentes exitosamente!";
+                    alreadyVotedMsg.style.display = 'block';
+                } else {
+                    alert(`¡Voto registrado con éxito! Llevas ${personasVotadasPorUsuario.length} de 5 votos emitidos.`);
+                    voteBtn.disabled = false;
+                    voteBtn.innerText = "VOTAR";
+                    actualizarContadorLabel();
+                }
+
+            } catch (error) {
+                console.error("Error al votar: ", error);
+                alert("Inconveniente: " + error.message);
+                voteBtn.disabled = false;
+                voteBtn.innerText = "VOTAR";
+            }
         });
 
-        initNameEntry();
+        // Intentar validar sesión de IP si ya ingresó nombre
+        if (currentSessionName) {
+            checkUserStatus();
+        }
     </script>
 </body>
 </html>
