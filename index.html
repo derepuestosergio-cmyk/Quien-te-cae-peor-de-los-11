@@ -35,6 +35,351 @@
             overflow-x: hidden;
         }
 
+        /* Pantalla de ingreso de nombre */
+        #nameEntryScreen {
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.85);
+            backdrop-filter: blur(10px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+        }
+
+        .name-entry-box {
+            background: #15102a;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 40px 36px;
+            width: 100%;
+            max-width: 420px;
+            text-align: center;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+            animation: fadeIn 0.5s ease;
+        }
+
+        .name-entry-box h2 {
+            font-size: 1.4rem;
+            font-weight: 800;
+            margin-bottom: 8px;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .name-entry-box p {
+            color: var(--text-muted);
+            font-size: 0.88rem;
+            margin-bottom: 24px;
+        }
+
+        .name-entry-box input {
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.12);
+            padding: 14px 18px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 1rem;
+            outline: none;
+            width: 100%;
+            margin-bottom: 16px;
+            transition: all 0.3s ease;
+        }
+
+        .name-entry-box input:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .name-entry-box button {
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 14px;
+            border-radius: 12px;
+            font-size: 1rem;
+            font-weight: 700;
+            cursor: pointer;
+            width: 100%;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .name-entry-box button:hover {
+            background: #ff6b81;
+            transform: translateY(-2px);
+        }
+
+        /* Modal de Votación */
+        #voteModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 8888;
+        }
+
+        #voteModal.active {
+            display: flex;
+        }
+
+        .vote-modal-box {
+            background: #15102a;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 36px 32px;
+            width: 100%;
+            max-width: 420px;
+            animation: fadeIn 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .vote-modal-box h3 {
+            font-size: 1.2rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .vote-modal-box .modal-subtitle {
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            margin-bottom: 20px;
+        }
+
+        .vote-modal-box .modal-target {
+            font-size: 1rem;
+            font-weight: 700;
+            color: #fff;
+            background: rgba(255,71,87,0.12);
+            border: 1px solid rgba(255,71,87,0.3);
+            border-radius: 10px;
+            padding: 10px 16px;
+            margin-bottom: 18px;
+            text-align: center;
+        }
+
+        .vote-modal-box textarea {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 12px 16px;
+            border-radius: 12px;
+            color: #fff;
+            font-size: 0.9rem;
+            outline: none;
+            width: 100%;
+            resize: none;
+            height: 90px;
+            transition: all 0.3s ease;
+            font-family: 'Poppins', sans-serif;
+            margin-bottom: 14px;
+        }
+
+        .vote-modal-box textarea:focus {
+            border-color: var(--accent-color);
+            box-shadow: 0 0 10px var(--accent-glow);
+        }
+
+        .vote-modal-box textarea::placeholder {
+            color: rgba(255,255,255,0.25);
+        }
+
+        .incognito-toggle {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            margin-bottom: 18px;
+            cursor: pointer;
+            user-select: none;
+        }
+
+        .incognito-toggle input[type="checkbox"] {
+            display: none;
+        }
+
+        .incognito-toggle .toggle-track {
+            width: 42px;
+            height: 22px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 11px;
+            position: relative;
+            transition: background 0.3s;
+            flex-shrink: 0;
+            border: 1px solid rgba(255,255,255,0.15);
+        }
+
+        .incognito-toggle input:checked + .toggle-track {
+            background: #ff4757;
+        }
+
+        .incognito-toggle .toggle-track::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: #fff;
+            border-radius: 50%;
+            top: 2px;
+            left: 2px;
+            transition: left 0.3s;
+        }
+
+        .incognito-toggle input:checked + .toggle-track::after {
+            left: 22px;
+        }
+
+        .incognito-toggle span {
+            font-size: 0.85rem;
+            color: var(--text-muted);
+        }
+
+        .modal-buttons {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-cancel-modal {
+            flex: 1;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-cancel-modal:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
+        .btn-confirm-vote {
+            flex: 2;
+            background: var(--accent-color);
+            color: white;
+            border: none;
+            padding: 13px;
+            border-radius: 12px;
+            font-size: 0.95rem;
+            font-weight: 700;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        .btn-confirm-vote:hover {
+            background: #ff6b81;
+            transform: translateY(-2px);
+        }
+
+        .btn-confirm-vote:disabled {
+            background: #555;
+            box-shadow: none;
+            cursor: not-allowed;
+            transform: none;
+        }
+
+        /* Modal de detalles de votos */
+        #detailModal {
+            display: none;
+            position: fixed;
+            inset: 0;
+            background: rgba(0,0,0,0.75);
+            backdrop-filter: blur(8px);
+            justify-content: center;
+            align-items: center;
+            z-index: 8888;
+        }
+
+        #detailModal.active {
+            display: flex;
+        }
+
+        .detail-modal-box {
+            background: #15102a;
+            border: 1px solid rgba(255,255,255,0.12);
+            border-radius: 20px;
+            padding: 32px 28px;
+            width: 100%;
+            max-width: 440px;
+            max-height: 80vh;
+            overflow-y: auto;
+            animation: fadeIn 0.4s ease;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.6);
+        }
+
+        .detail-modal-box h3 {
+            font-size: 1.15rem;
+            font-weight: 800;
+            margin-bottom: 16px;
+            background: linear-gradient(90deg, #ff4757, #ff6b81);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .detail-voter-item {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.07);
+            border-radius: 12px;
+            padding: 12px 16px;
+            margin-bottom: 10px;
+        }
+
+        .detail-voter-name {
+            font-weight: 700;
+            font-size: 0.95rem;
+            color: #fff;
+            display: flex;
+            align-items: center;
+            gap: 6px;
+            margin-bottom: 4px;
+        }
+
+        .detail-voter-reason {
+            font-size: 0.82rem;
+            color: var(--text-muted);
+            font-style: italic;
+        }
+
+        .detail-no-voters {
+            text-align: center;
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            padding: 20px 0;
+        }
+
+        .btn-close-detail {
+            margin-top: 18px;
+            width: 100%;
+            background: rgba(255,255,255,0.06);
+            border: 1px solid rgba(255,255,255,0.1);
+            color: var(--text-muted);
+            padding: 12px;
+            border-radius: 12px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+
+        .btn-close-detail:hover {
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+        }
+
         /* Contenedor Principal con animación de entrada */
         .container {
             background: var(--panel-bg);
@@ -209,6 +554,12 @@
             background: rgba(255, 255, 255, 0.05);
             padding: 2px 10px;
             border-radius: 20px;
+            cursor: pointer;
+        }
+
+        .bar-votes:hover {
+            background: rgba(255, 71, 87, 0.15);
+            color: #ff6b81;
         }
 
         .bar-track {
@@ -245,6 +596,27 @@
             font-size: 0.9rem;
         }
 
+        /* Hint de "ver quién votó" */
+        .voters-hint {
+            font-size: 0.75rem;
+            color: rgba(255,71,87,0.6);
+            text-align: right;
+            margin-top: 2px;
+        }
+
+        /* Scrollbar del modal de detalles */
+        .detail-modal-box::-webkit-scrollbar {
+            width: 6px;
+        }
+        .detail-modal-box::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.03);
+            border-radius: 3px;
+        }
+        .detail-modal-box::-webkit-scrollbar-thumb {
+            background: rgba(255,71,87,0.4);
+            border-radius: 3px;
+        }
+
         /* Animaciones */
         @keyframes fadeIn {
             from { opacity: 0; transform: translateY(20px); }
@@ -263,6 +635,44 @@
     </style>
 </head>
 <body>
+
+    <!-- Pantalla de ingreso de nombre -->
+    <div id="nameEntryScreen">
+        <div class="name-entry-box">
+            <h2>👤 ¿Cómo te llamas?</h2>
+            <p>Tu nombre aparecerá cuando otros vean quién votó por quién.</p>
+            <input type="text" id="userNameInput" placeholder="Tu nombre..." maxlength="25" autocomplete="off">
+            <button id="enterAppBtn">ENTRAR</button>
+        </div>
+    </div>
+
+    <!-- Modal de Votación -->
+    <div id="voteModal">
+        <div class="vote-modal-box">
+            <h3>🗳️ Votar</h3>
+            <p class="modal-subtitle">Vas a votar por:</p>
+            <div class="modal-target" id="modalTargetName">—</div>
+            <textarea id="modalReason" placeholder="¿Por qué te cae mal? (opcional)"></textarea>
+            <label class="incognito-toggle">
+                <input type="checkbox" id="incognitoCheck">
+                <span class="toggle-track"></span>
+                <span>🕵️ Modo incógnito (tu nombre aparecerá como "Anónimo")</span>
+            </label>
+            <div class="modal-buttons">
+                <button class="btn-cancel-modal" id="cancelVoteBtn">Cancelar</button>
+                <button class="btn-confirm-vote" id="confirmVoteBtn">VOTAR</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal de detalles de votos -->
+    <div id="detailModal">
+        <div class="detail-modal-box">
+            <h3 id="detailModalTitle">Votos para —</h3>
+            <div id="detailModalContent"></div>
+            <button class="btn-close-detail" id="closeDetailBtn">Cerrar</button>
+        </div>
+    </div>
 
     <div class="container">
         <h1>¿Quién te cae peor de los 11?</h1>
@@ -288,7 +698,7 @@
 
     <script type="module">
         import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-        import { getDatabase, ref, set, get, onValue } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
+        import { getDatabase, ref, set, get, onValue, push } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-database.js";
 
         // Configuración de tu base de datos
         const firebaseConfig = {
@@ -308,6 +718,8 @@
 
         // Nodos Directos
         const votesRef = ref(db, 'Votos');
+        // Nodo nuevo para detalles de votos (quién votó por quién, razón, incógnito)
+        const voteDetailsRef = ref(db, 'VoteDetails');
 
         // Elementos del DOM
         const voteSection = document.getElementById('voteSection');
@@ -317,11 +729,71 @@
         const resultsContainer = document.getElementById('resultsContainer');
         const loadingStr = document.getElementById('loading');
 
+        // Elementos de pantalla de nombre
+        const nameEntryScreen = document.getElementById('nameEntryScreen');
+        const userNameInput = document.getElementById('userNameInput');
+        const enterAppBtn = document.getElementById('enterAppBtn');
+
+        // Elementos del modal de votación
+        const voteModal = document.getElementById('voteModal');
+        const modalTargetName = document.getElementById('modalTargetName');
+        const modalReason = document.getElementById('modalReason');
+        const incognitoCheck = document.getElementById('incognitoCheck');
+        const cancelVoteBtn = document.getElementById('cancelVoteBtn');
+        const confirmVoteBtn = document.getElementById('confirmVoteBtn');
+
+        // Elementos del modal de detalles
+        const detailModal = document.getElementById('detailModal');
+        const detailModalTitle = document.getElementById('detailModalTitle');
+        const detailModalContent = document.getElementById('detailModalContent');
+        const closeDetailBtn = document.getElementById('closeDetailBtn');
+
         let userIpSanitized = "";
         let hasVoted = false;
         let globalVotesData = {};
+        let globalVoteDetails = {};
+        let currentVoteTarget = "";
+        let currentUserName = "";
 
-        // 1. Validar la IP única del votante
+        // ── Pantalla de ingreso de nombre ──────────────────────────────────
+        function initNameEntry() {
+            const savedName = localStorage.getItem('user_display_name');
+            if (savedName && savedName.trim().length > 0) {
+                currentUserName = savedName.trim();
+                nameEntryScreen.style.display = 'none';
+                checkUserStatus();
+            } else {
+                nameEntryScreen.style.display = 'flex';
+            }
+        }
+
+        enterAppBtn.addEventListener('click', () => {
+            const inputVal = userNameInput.value.trim();
+            if (!inputVal || inputVal.length < 1) {
+                userNameInput.style.borderColor = '#ff4757';
+                userNameInput.placeholder = "Por favor escribe tu nombre...";
+                return;
+            }
+            currentUserName = inputVal;
+            localStorage.setItem('user_display_name', currentUserName);
+            nameEntryScreen.style.display = 'none';
+            checkUserStatus();
+        });
+
+        userNameInput.addEventListener('keydown', (e) => {
+            if (e.key === 'Enter') enterAppBtn.click();
+        });
+
+        // ── Escuchar detalles de votos en tiempo real ──────────────────────
+        onValue(voteDetailsRef, (snapshot) => {
+            if (snapshot.exists()) {
+                globalVoteDetails = snapshot.val();
+            } else {
+                globalVoteDetails = {};
+            }
+        });
+
+        // ── Validar la IP única del votante ────────────────────────────────
         async function checkUserStatus() {
             try {
                 const response = await fetch('https://api.ipify.org?format=json');
@@ -349,7 +821,24 @@
             }
         }
 
-        // 2. Escuchar cambios de Firebase y renderizar con Medallas
+        // ── Abrir modal de votación ────────────────────────────────────────
+        function openVoteModal(targetName) {
+            if (hasVoted) return;
+            currentVoteTarget = targetName;
+            modalTargetName.textContent = targetName;
+            modalReason.value = "";
+            incognitoCheck.checked = false;
+            confirmVoteBtn.disabled = false;
+            confirmVoteBtn.innerText = "VOTAR";
+            voteModal.classList.add('active');
+        }
+
+        cancelVoteBtn.addEventListener('click', () => {
+            voteModal.classList.remove('active');
+            currentVoteTarget = "";
+        });
+
+        // ── Escuchar cambios de Firebase y renderizar con Medallas ─────────
         onValue(votesRef, (snapshot) => {
             loadingStr.style.display = 'none';
             resultsContainer.innerHTML = "";
@@ -384,45 +873,107 @@
                 const barRow = document.createElement('div');
                 // Agrega clases especiales top-0, top-1, top-2 para cambiar color de barra
                 barRow.className = `bar-row ${index < 3 ? 'top-' + index : ''}`;
-                
-                barRow.onclick = () => {
-                    if(!hasVoted) {
+
+                // Al hacer clic en la fila: si no votó → abrir modal de votación
+                // Si ya votó → abrir modal de detalles
+                barRow.onclick = (e) => {
+                    // Si el click viene del badge de votos, lo manejamos por separado
+                    if (e.target.classList.contains('bar-votes')) return;
+                    if (!hasVoted) {
                         nameInput.value = item.name;
-                        nameInput.focus();
+                        openVoteModal(item.name);
+                    } else {
+                        openDetailModal(item.name);
                     }
                 };
 
                 barRow.innerHTML = `
                     <div class="bar-info">
                         <span class="bar-name">${medalHtml}${item.name}</span>
-                        <span class="bar-votes">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%)</span>
+                        <span class="bar-votes" title="Ver quién votó">${item.votes} ${item.votes === 1 ? 'voto' : 'votos'} (${percentageReal}%) 👁</span>
                     </div>
                     <div class="bar-track">
                         <div class="bar-fill" style="width: ${percentage}%"></div>
                     </div>
+                    <div class="voters-hint">Toca los votos para ver quién votó</div>
                 `;
+
+                // El badge de votos abre siempre el modal de detalles
+                const voteBadge = barRow.querySelector('.bar-votes');
+                voteBadge.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    openDetailModal(item.name);
+                });
+
                 resultsContainer.appendChild(barRow);
             });
         });
 
-        // 3. Procesar Envío del Voto Directo
-        voteBtn.addEventListener('click', async () => {
-            const rawName = nameInput.value.trim();
-            
-            if (!rawName) {
-                alert("Por favor, escribe o selecciona un nombre válido.");
+        // ── Modal de detalles: quién votó por quién ───────────────────────
+        function openDetailModal(targetName) {
+            detailModalTitle.textContent = `Votos para ${targetName}`;
+            detailModalContent.innerHTML = "";
+
+            // Buscar en VoteDetails todos los registros que tengan voted = targetName
+            const allDetails = globalVoteDetails;
+            const votersForTarget = [];
+
+            Object.keys(allDetails).forEach(key => {
+                const entry = allDetails[key];
+                if (entry.voted === targetName) {
+                    votersForTarget.push(entry);
+                }
+            });
+
+            if (votersForTarget.length === 0) {
+                detailModalContent.innerHTML = `<div class="detail-no-voters">Nadie ha votado por ${targetName} aún.</div>`;
+            } else {
+                votersForTarget.forEach(entry => {
+                    const voterDisplayName = entry.incognito ? '🕵️ Anónimo' : `👤 ${entry.voterName}`;
+                    const reasonText = entry.reason && entry.reason.trim().length > 0
+                        ? entry.reason.trim()
+                        : 'Prefiero no decirlo.';
+
+                    const item = document.createElement('div');
+                    item.className = 'detail-voter-item';
+                    item.innerHTML = `
+                        <div class="detail-voter-name">${voterDisplayName}</div>
+                        <div class="detail-voter-reason">💬 "${reasonText}"</div>
+                    `;
+                    detailModalContent.appendChild(item);
+                });
+            }
+
+            detailModal.classList.add('active');
+        }
+
+        closeDetailBtn.addEventListener('click', () => {
+            detailModal.classList.remove('active');
+        });
+
+        detailModal.addEventListener('click', (e) => {
+            if (e.target === detailModal) detailModal.classList.remove('active');
+        });
+
+        // ── Confirmar voto desde el modal ─────────────────────────────────
+        confirmVoteBtn.addEventListener('click', async () => {
+            if (!currentVoteTarget || currentVoteTarget.trim().length === 0) {
+                alert("No hay un objetivo de voto seleccionado.");
                 return;
             }
 
-            const sanitizedName = rawName.replace(/[\.#\$\[\]]/g, "").trim();
+            const sanitizedName = currentVoteTarget.replace(/[\.#\$\[\]]/g, "").trim();
 
             if (sanitizedName.length === 0) {
                 alert("Nombre no válido.");
                 return;
             }
 
-            voteBtn.disabled = true;
-            voteBtn.innerText = "PROCESANDO...";
+            const reason = modalReason.value.trim();
+            const isIncognito = incognitoCheck.checked;
+
+            confirmVoteBtn.disabled = true;
+            confirmVoteBtn.innerText = "PROCESANDO...";
 
             try {
                 if (userIpSanitized) {
@@ -440,6 +991,16 @@
                 // Guardado directo en /Votos/Nombre
                 await set(ref(db, `Votos/${sanitizedName}`), newVotesValue);
 
+                // Guardar detalle del voto en /VoteDetails
+                const detailEntry = {
+                    voterName: currentUserName,
+                    voted: sanitizedName,
+                    reason: reason.length > 0 ? reason : "",
+                    incognito: isIncognito,
+                    timestamp: Date.now()
+                };
+                await push(voteDetailsRef, detailEntry);
+
                 if (userIpSanitized) {
                     await set(ref(db, `Ips_Votadas/${userIpSanitized}`), true);
                 }
@@ -450,16 +1011,38 @@
                 nameInput.value = "";
                 voteSection.style.display = 'none';
                 alreadyVotedMsg.style.display = 'block';
+                voteModal.classList.remove('active');
+                currentVoteTarget = "";
 
             } catch (error) {
                 console.error("Error al votar: ", error);
                 alert("Inconveniente: " + error.message);
-                voteBtn.disabled = false;
-                voteBtn.innerText = "VOTAR";
+                confirmVoteBtn.disabled = false;
+                confirmVoteBtn.innerText = "VOTAR";
             }
         });
 
-        checkUserStatus();
+        // ── Procesar Envío del Voto desde el input manual ─────────────────
+        voteBtn.addEventListener('click', async () => {
+            const rawName = nameInput.value.trim();
+            
+            if (!rawName) {
+                alert("Por favor, escribe o selecciona un nombre válido.");
+                return;
+            }
+
+            const sanitizedName = rawName.replace(/[\.#\$\[\]]/g, "").trim();
+
+            if (sanitizedName.length === 0) {
+                alert("Nombre no válido.");
+                return;
+            }
+
+            // Abrir el modal de confirmación con razón e incógnito
+            openVoteModal(sanitizedName);
+        });
+
+        initNameEntry();
     </script>
 </body>
 </html>
